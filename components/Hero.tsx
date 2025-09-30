@@ -4,11 +4,17 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative w-full min-h-[80vh] flex items-center justify-center overflow-hidden">
+    <section
+      className="relative min-h-screen w-full flex items-center justify-center px-6 py-16
+       overflow-hidden"
+    >
+      {/* Subtle background noise texture overlay */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')]"></div>
 
       {/* Glassmorphism Hero Container */}
       <motion.div
-        className="relative z-10 bg-white/10 backdrop-blur-xl rounded-3xl p-10 max-w-4xl text-center flex flex-col items-center justify-center shadow-lg"
+        className="relative z-10 bg-white/1 backdrop-blur-xl rounded-3xl p-10 max-w-4xl text-center 
+        flex flex-col items-center justify-center shadow-lg"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2 }}
@@ -24,13 +30,15 @@ export default function Hero() {
         <div className="flex flex-col md:flex-row gap-4">
           <Link
             href="/outline"
-            className="px-6 py-3 bg-white/30 text-white font-semibold rounded-full shadow-lg hover:bg-white/40 hover:scale-105 transition"
+            className="px-6 py-3 bg-white/30 text-white font-semibold rounded-full shadow-lg 
+            hover:bg-white/40 hover:scale-105 transition"
           >
             View Course Outline
           </Link>
           <Link
             href="/faculty"
-            className="px-6 py-3 border border-white/30 text-white font-semibold rounded-full shadow-lg hover:bg-white/20 transition"
+            className="px-6 py-3 border border-white/30 text-white font-semibold rounded-full shadow-lg 
+            hover:bg-white/20 transition"
           >
             Meet Our Faculty
           </Link>

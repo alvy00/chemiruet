@@ -115,7 +115,7 @@ const Page = () => {
 
                 {/* Scrollable Alumni Cards */}
                 <div
-                ref={(el) => (scrollRefs.current[series] = el)}
+                ref={(el) => { scrollRefs.current[series] = el; }}
                 onScroll={() => updateScrollButtons(series)}
                 className="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory"
                 >

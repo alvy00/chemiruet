@@ -22,7 +22,7 @@ export default function YearCard({ year, expanded, toggleExpand }: YearCardProps
     <motion.div
       whileHover={{ scale: 1.05 }}
       className={`relative glass p-8 rounded-3xl cursor-pointer hover:shadow-2xl transition-transform ${
-        expanded ? "ring-2 ring-blue-400" : ""
+        expanded ? "ring-[0.3px] ring-blue-200" : ""
       }`}
       onClick={() => toggleExpand(year)}
     >

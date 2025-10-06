@@ -13,7 +13,7 @@ export default function Hero() {
 
       {/* Glassmorphism Hero Container */}
       <motion.div
-        className="relative z-10 bg-white/1 backdrop-blur-xl rounded-3xl p-10 max-w-4xl text-center 
+        className="relative z-10 bg-white/2 backdrop-blur-xl rounded-3xl p-10 max-w-4xl text-center 
         flex flex-col items-center justify-center shadow-lg"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}

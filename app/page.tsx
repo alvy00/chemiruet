@@ -33,7 +33,7 @@ export default function HomePage() {
           >
             <YearCard
               year={year}
-              expanded={expandedYear === year}
+              expanded={true}
               toggleExpand={toggleExpand}
             />
           </motion.div>

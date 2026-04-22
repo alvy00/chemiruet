@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { Layers, ArrowRight, Zap, Microscope } from "lucide-react";
+import { Layers, ArrowRight, Zap, Microscope, FolderOpen } from "lucide-react";
 
 interface YearCardProps {
     year: number;
@@ -17,7 +17,6 @@ export default function YearCard({
 }: YearCardProps) {
     const router = useRouter();
 
-    // Academic metadata to make it feel "useful"
     const yearDetails: Record<number, { focus: string; icon: any }> = {
         1: { focus: "Foundational Sciences", icon: <Zap size={16} /> },
         2: { focus: "Core Thermodynamics", icon: <Layers size={16} /> },
@@ -29,7 +28,7 @@ export default function YearCard({
         e: React.MouseEvent,
         semester: "ODD" | "EVEN",
     ) => {
-        e.stopPropagation(); // Prevent the card from closing when clicking a button
+        e.stopPropagation();
         const semesterParam = semester === "ODD" ? 1 : 2;
         router.push(`/${year}-${semesterParam}`);
     };
@@ -40,11 +39,11 @@ export default function YearCard({
             onClick={() => toggleExpand(year)}
             className={`relative group overflow-hidden transition-all duration-500 border ${
                 expanded
-                    ? "bg-white/[0.03] border-white/20 shadow-[0_0_40px_rgba(255,255,255,0.05)]"
-                    : "bg-white/[0.01] border-white/5 hover:border-white/20"
+                    ? "bg-white/[0.03] border-white/40 shadow-[0_0_40px_rgba(255,255,255,0.05)]"
+                    : "bg-white/[0.01] border-white/10 hover:border-white/40"
             } rounded-[2.5rem] p-8 cursor-pointer`}
         >
-            {/* Background Year Number (Large Watermark) */}
+            {/* Background Year Number */}
             <div className="absolute -right-4 -bottom-10 text-[12rem] font-black text-white/[0.02] italic select-none pointer-events-none group-hover:text-white/[0.04] transition-colors">
                 {year}
             </div>
@@ -53,13 +52,19 @@ export default function YearCard({
                 {/* Header Section */}
                 <div className="flex justify-between items-start mb-4">
                     <div className="flex flex-col">
-                        <span className="text-[10px] font-bold tracking-[0.3em] text-white/30 uppercase mb-1">
-                            Academic Phase
-                        </span>
-                        <h2 className="text-4xl font-black italic text-white tracking-tighter">
+                        {/* THE INDICATIVE TITLE */}
+                        <div className="flex items-center gap-2 mb-2">
+                            <FolderOpen size={14} className="text-white/40" />
+                            <span className="text-[10px] font-black tracking-[0.4em] text-white/40 uppercase">
+                                Resource Directory
+                            </span>
+                        </div>
+
+                        <h2 className="text-4xl font-black italic text-white tracking-tighter leading-none">
                             YEAR {year}.
                         </h2>
                     </div>
+
                     <div
                         className={`p-3 rounded-2xl transition-all duration-500 ${
                             expanded
@@ -71,14 +76,21 @@ export default function YearCard({
                     </div>
                 </div>
 
-                {/* Short info visible when collapsed */}
+                {/* Focus Area */}
+                <div className="mb-2">
+                    <p className="text-white/60 text-sm font-medium">
+                        {yearDetails[year]?.focus}
+                    </p>
+                </div>
+
+                {/* Collapsed Hint */}
                 {!expanded && (
                     <motion.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="text-white/40 text-sm font-light max-w-[200px]"
+                        className="text-[10px] font-mono text-white/20 uppercase tracking-widest"
                     >
-                        {yearDetails[year]?.focus}
+                        Click to decrypt files
                     </motion.p>
                 )}
 
@@ -122,10 +134,9 @@ export default function YearCard({
                                 ))}
                             </div>
 
-                            {/* Utility Info */}
                             <div className="mt-8 flex gap-4 text-[10px] font-mono text-white/20">
-                                <span>STATUS: ARCHIVED_RESOURCES</span>
-                                <span>LEVEL: {year}.0</span>
+                                <span>DB_STATUS: READY</span>
+                                <span>CATALOG: {year}.0_CHEME</span>
                             </div>
                         </motion.div>
                     )}
